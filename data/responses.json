@@ -1,0 +1,77 @@
+{
+  "greetings": {
+    "patterns": ["hello", "hi", "hey", "greetings"],
+    "responses": [
+      "Hello! I'm your offline voice assistant. How can I help you?",
+      "Hi there! What can I do for you?",
+      "Hey! I'm listening. What do you need?",
+      "Greetings! I'm here to assist you."
+    ]
+  },
+  "time": {
+    "patterns": ["what time", "tell me time", "current time", "what is the time"],
+    "responses": [
+      "I can see the current time on your system.",
+      "The time will be displayed in the terminal.",
+      "Let me check the time for you."
+    ]
+  },
+  "date": {
+    "patterns": ["what date", "tell me date", "current date", "what is today"],
+    "responses": [
+      "Today's date will be shown in the terminal.",
+      "Let me fetch the current date for you.",
+      "I'll display today's date right away."
+    ]
+  },
+  "weather": {
+    "patterns": ["weather", "temperature", "is it raining", "how hot"],
+    "responses": [
+      "I'm offline, so I can't fetch live weather data. However, you can check your local weather app.",
+      "Sorry, I don't have internet access to get weather information.",
+      "I can't access real-time weather data, but you can use your weather app."
+    ]
+  },
+  "help": {
+    "patterns": ["help", "what can you do", "capabilities", "features"],
+    "responses": [
+      "I can help you with time, date, system info, and answer basic questions. What would you like to know?",
+      "I can tell you the time, date, and provide basic assistance. How can I help?",
+      "My capabilities include time, date, and system information queries. What do you need?"
+    ]
+  },
+  "name": {
+    "patterns": ["what is your name", "who are you", "your name"],
+    "responses": [
+      "I'm VoiceBot, your offline assistant! Nice to meet you.",
+      "My name is VoiceBot. I'm here to help you offline!",
+      "You can call me VoiceBot, your personal assistant."
+    ]
+  },
+  "goodbye": {
+    "patterns": ["goodbye", "bye", "see you", "exit", "quit"],
+    "responses": [
+      "Goodbye! See you next time!",
+      "Bye for now!",
+      "Take care! I'll be here when you need me again.",
+      "See you later!"
+    ]
+  },
+  "system_info": {
+    "patterns": ["system info", "tell me about", "system details", "computer info"],
+    "responses": [
+      "Let me fetch your system information.",
+      "I'll display your system details now.",
+      "Getting your system information."
+    ]
+  },
+  "default": {
+    "patterns": [],
+    "responses": [
+      "I didn't quite understand that. Could you repeat please?",
+      "Sorry, I didn't catch that. Can you say it again?",
+      "I'm not sure what you mean. Can you rephrase that?",
+      "Let me think about that one... I'm not sure. Can you ask something else?"
+    ]
+  }
+}
