@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  voicebot:
+    build: .
+    container_name: autonomous-voicebot
+    image: autonomous-voicebot:latest
+    stdin_open: true
+    tty: true
+    
+    # Audio device passthrough for real microphone/speakers
+    devices:
+      - /dev/snd:/dev/snd
+    
+    # PulseAudio socket for audio
+    volumes:
+      - /run/user/1000/pulse:/run/user/1000/pulse
+      - ./data:/app/data
+      - ./config:/app/config
+    
+    # Environment variables
+    environment:
+      PYTHONUNBUFFERED: "1"
+      PULSE_SERVER: unix:/run/user/1000/pulse/native
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 512M
+        reservations:
+          cpus: '1'
+          memory: 256M
+    
+    # Restart policy
+    restart: unless-stopped
