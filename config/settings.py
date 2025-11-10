@@ -8,7 +8,7 @@ SAMPLE_RATE = 16000  # Hertz
 AUDIO_CHUNK = 4096   # Bytes per chunk
 
 # Text-to-Speech Settings
-TTS_VOICE_RATE = 150  # Words per minute
+TTS_VOICE_RATE = 190  # Words per minute (190 WPM = natural conversational speed)
 TTS_VOLUME = 1.0  # 0.0 to 1.0
 
 # Terminal UI Settings

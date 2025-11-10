@@ -15,6 +15,7 @@ from src.speech_synthesis import SpeechSynthesizer
 from src.response_engine import ResponseEngine
 from src.terminal_ui import TerminalUI
 from src.connectivity_manager import ConnectivityManager
+from src.advanced_command_interpreter import AdvancedCommandInterpreter
 from config.settings import DEBUG
 
 
@@ -26,6 +27,7 @@ class VoiceBot:
         self.ui = TerminalUI()
         self.response_engine = ResponseEngine()
         self.speech_synthesizer = SpeechSynthesizer()
+        self.command_interpreter = AdvancedCommandInterpreter()  # NEW: System control
         self.speech_recognizer = None
         self.connectivity_manager = ConnectivityManager()
         self.is_running = False
@@ -88,15 +90,24 @@ class VoiceBot:
         print()
         self.ui.display_user_input(user_input)
         
-        # Get response
-        response, confidence = self.response_engine.find_response(user_input)
+        # First, try advanced command interpreter (system control)
+        cmd_result = self.command_interpreter.interpret_command(user_input)
         
-        if DEBUG:
-            print(f"[DEBUG] Confidence: {confidence:.2f}")
+        if cmd_result['status'] == 'success':
+            # System command was executed
+            response = cmd_result['response']
+        elif cmd_result['action'] != 'unknown':
+            # Command matched but had an error
+            response = cmd_result['response']
+        else:
+            # Use traditional response engine for general conversation
+            response, confidence = self.response_engine.find_response(user_input)
+            if DEBUG:
+                print(f"[DEBUG] Confidence: {confidence:.2f}")
         
-        # Handle special commands
+        # Handle special commands that need additional output
         if self._handle_special_commands(user_input):
-            return True
+            pass
         
         # Display response
         print()
