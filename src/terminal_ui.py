@@ -205,13 +205,16 @@ KEYBOARD_SHORTCUTS:
 AUTONOMOUS_DIALOGUE_SYSTEM ONLINE
 All subsystems nominal for operation
 
-Try commands like:
-  * Hello
-  * What time is it?
-  * System info
-  * Help
+30+ COMMANDS AVAILABLE:
+  * LOCATION: "Where am I?" • "Find coffee shops"
+  * WEATHER: "What's the weather?" • "Is it raining?"
+  * SYSTEM: "Battery status" • "Disk usage" • "Network status"
+  * CONTROL: "Set volume to 50" • "Set brightness to 80"
+  * APPS: "Open Chrome" • "Close Spotify" • "List applications"
+  * WEB: "Search for Python" • "Open google.com"
+  * SYSTEM: "Lock screen" • "Sleep"
 
-Type your command or speak directly:
+Type your command:
         """
         panel = Panel(welcome_text, border_style="rgb(255,127,0)", title="[READY_FOR_INPUT]")
         self.console.print(panel)

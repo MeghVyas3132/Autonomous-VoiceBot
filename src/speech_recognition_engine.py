@@ -79,90 +79,24 @@ class SpeechRecognizer:
             print(f"ERROR: Failed to initialize Whisper: {e}")
             return False
     
-    def listen(self, timeout: Optional[float] = 10, demo_mode: bool = False) -> str:
+    def listen(self, timeout: Optional[float] = 10, demo_mode: bool = True) -> str:
         """
-        Listen to microphone and return recognized text
+        Get user input - TEXT MODE (no audio required)
         
         Args:
-            timeout: Timeout in seconds (None for no timeout)
-            demo_mode: If True, use demo text instead of real audio
+            timeout: Ignored (kept for compatibility)
+            demo_mode: Always True (text input mode)
             
         Returns:
-            Recognized text
+            User input text
         """
-        if demo_mode:
-            return self._demo_listen()
-        
-        if not self.model:
-            print("[SYSTEM] Model not initialized - using demo mode")
-            return self._demo_listen()
-        
-        if not AUDIO_AVAILABLE:
-            print("[SYSTEM] Audio libraries not available - using demo mode")
-            return self._demo_listen()
-        
-        try:
-            self.is_listening = True
-            
-            # Record audio - increased to 10 seconds for better voice capture
-            duration = timeout or 10  # Default 10 seconds (increased from 5)
-            print(f"[SYSTEM] Listening for {int(duration)} seconds... speak now!")
-            
-            # Record audio at 16kHz
-            audio_data = sd.rec(
-                int(SAMPLE_RATE * duration),
-                samplerate=SAMPLE_RATE,
-                channels=1,
-                dtype='float32'
-            )
-            sd.wait()
-            
-            # Save to temporary file (Whisper works with audio files)
-            temp_audio_file = "/tmp/voicebot_temp_audio.wav"
-            sf.write(temp_audio_file, audio_data, SAMPLE_RATE)
-            
-            # Use Whisper to transcribe
-            print("[SYSTEM] Processing speech with Whisper...")
-            
-            # Check if ffmpeg is available, use appropriate method
-            if check_ffmpeg():
-                result = self.model.transcribe(temp_audio_file, language="en")
-            else:
-                # Fallback: load audio directly without ffmpeg
-                import soundfile as sf
-                audio, sr = sf.read(temp_audio_file)
-                # Resample if necessary
-                if sr != 16000:
-                    from scipy import signal
-                    audio = signal.resample(audio, int(len(audio) * 16000 / sr))
-                result = self.model.transcribe(temp_audio_file, language="en", fp16=False)
-            
-            recognized_text = result.get("text", "").strip()
-            
-            # Clean up temp file
-            if os.path.exists(temp_audio_file):
-                os.remove(temp_audio_file)
-            
-            self.is_listening = False
-            
-            if recognized_text:
-                print(f"[SYSTEM] Confidence: high")
-                return recognized_text
-            else:
-                print("[SYSTEM] No speech detected")
-                return ""
-            
-        except Exception as e:
-            print(f"ERROR: Error during listening: {e}")
-            print(f"ERROR: ffmpeg might be missing. Install with: brew install ffmpeg")
-            self.is_listening = False
-            return self._demo_listen()
+        # Always use text input - no ffmpeg or audio required!
+        return self._demo_listen()
     
     def _demo_listen(self) -> str:
-        """Demo mode - get text input from user"""
-        print("\n[DEMO_MODE] Enter your command:")
-        print("   Examples: 'hello', 'what time', 'who are you', 'goodbye'")
-        user_input = input("[USER_INPUT] > ").strip()
+        """Text input mode - get text input from user (no audio required)"""
+        print()
+        user_input = input("[INPUT] > ").strip()
         return user_input
     
     def stop_listening(self):

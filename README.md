@@ -19,27 +19,27 @@ A professional **offline voice assistant** for macOS with full system control. G
 
 ### 🗣️ Voice Capabilities
 - **Female Voice**: Natural human-like speech (Samantha, 190 WPM)
-- **Real Microphone**: OpenAI Whisper (90%+ accuracy)
-- **Offline**: Core features work without internet
+- **Text Input**: Type commands (no microphone needed!)
+- **Voice Output**: Responses spoken aloud
+- **Offline**: Works completely offline
 - **Multiple Tones**: Natural, Fast, Slow, Formal, Casual
 - **Prosody**: Intelligent pauses and emphasis
 
-### 🎮 System Control
-- **Location & Weather**: Ask where you are, check weather
-- **Find Places**: "Find nearby restaurants"
+### 🎮 System Control (30+ Commands)
+- **Location & Weather**: Ask where you are, check weather, find restaurants
 - **System Monitoring**: Battery, disk, network status
 - **Control**: Brightness, volume, sleep, lock screen
-- **Apps**: Open/close applications
-- **Web Search**: Search the internet
+- **Apps**: Open/close applications, list running apps
+- **Web Search**: Search the internet and open URLs
 
 ### 💡 Smart Features
 - **Natural Language**: Understands command variations
 - **Smart Responses**: Automatic tone selection
-- **Demo Mode**: Works with text input
+- **No Dependencies**: No microphone, no FFmpeg needed
 - **Terminal UI**: Clean, professional interface
 - **Extensible**: Easy to add custom commands
 
-## 🚀 Quick Start (5 minutes)
+## 🚀 Quick Start (3 minutes)
 
 ### 1. Setup
 
@@ -50,72 +50,157 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Install FFmpeg
+### 2. Run
 
 ```bash
-# Option 1: Conda (Easiest)
-conda install -c conda-forge ffmpeg
-
-# Option 2: MacPorts
-sudo port install ffmpeg
-
-# Option 3: Direct Download
-# Visit https://ffmpeg.org/download.html and follow instructions
+python3 src/main.py
 ```
 
-### 3. Run
+### 3. Start Using
 
-```bash
-python src/main.py
-```
+- The bot will prompt you to **type commands** (no microphone needed)
+- All commands are instantly recognized and executed
+- Responses are spoken by your female voice assistant
+- Type "bye" or "exit" to quit
 
-## 📖 Complete Commands
+## 📖 Complete Supported Commands
 
-### 🗺️ Location & Maps
-- "Where am I?" → Shows location (city, coordinates)
-- "Find nearby restaurants" → Opens Maps search
-- "Coffee shops" → Find coffee shops near you
+### 🗺️ Location & Maps Commands
+- **"Where am I?"** → Shows your current location (city, coordinates)
+- **"Current location"** → Same as above
+- **"My location"** → Get location details
+- **"Find nearby restaurants"** → Search for restaurants near you
+- **"Restaurants nearby"** → List nearby restaurants
+- **"Find me a restaurant"** → Restaurant finder
+- **"Where are restaurants"** → Restaurant search
+- **"Find coffee"** → Find coffee shops near you
+- **"Coffee shops"** → Find coffee shops
+- **"Nearest coffee"** → Closest coffee shop
 
-### 🌤️ Weather
-- "What's the weather?" → Current weather data
-- "Weather here" → Same as above
-- "Is it raining?" → Rain information
+### 🌤️ Weather Commands
+- **"What's the weather?"** → Current weather with temperature, wind, humidity
+- **"Weather here"** → Current weather information
+- **"Current weather"** → Today's weather
+- **"Is it raining?"** → Rain status
+- **"Temperature outside"** → Current temperature
+- **"How is the weather"** → Weather details
 
-### 💻 System Monitoring
-- "System information" → Full system details
-- "Battery status" → Battery % and charging status
-- "Disk usage" → Storage information
-- "Network status" → WiFi connection info
+### 💻 System Monitoring Commands
+- **"System information"** → Full system details (CPU, RAM, OS)
+- **"System info"** → Comprehensive system status
+- **"Computer info"** → Mac information
+- **"Battery status"** → Battery percentage and charging status
+- **"How much battery"** → Battery level
+- **"Battery percentage"** → Current battery %
+- **"Disk usage"** → Storage space information
+- **"How much storage"** → Available storage
+- **"Storage used"** → Disk usage details
+- **"Disk space"** → Available disk space
+- **"Network status"** → WiFi and internet connection info
+- **"Network information"** → Complete network details
+- **"Internet status"** → Connection status
+- **"WiFi status"** → WiFi connection info
 
-### 🔆 Brightness
-- "Get brightness" → Current level
-- "Set brightness to 80" → 0-100% control
+### 🔆 Brightness Control Commands
+- **"Get brightness"** → Current brightness level
+- **"Check brightness"** → Current screen brightness
+- **"What is the brightness"** → Brightness percentage
+- **"How bright"** → Current brightness
+- **"Set brightness to 80"** → Set to 0-100%
+- **"Brightness 75"** → Direct brightness value
+- **"Brighten to 90"** → Increase brightness
+- **"Dim to 20"** → Decrease brightness
 
-### 🔊 Volume
-- "Get volume" → Current level
-- "Set volume to 50" → 0-100% control
-- "Mute" → Mute sound
-- "Unmute" → Restore sound
+### 🔊 Volume Control Commands
+- **"Get volume"** → Current volume level
+- **"Check volume"** → Current volume status
+- **"What is the volume"** → Volume percentage
+- **"Volume level"** → Current volume
+- **"Set volume to 50"** → Set to 0-100%
+- **"Volume 75"** → Direct volume value
+- **"Increase volume"** → Make louder
+- **"Decrease volume"** → Make quieter
+- **"Volume up"** → Increase volume
+- **"Volume down"** → Lower volume
+- **"Mute"** → Mute sound
+- **"Silence"** → Mute all sound
+- **"Mute the sound"** → Silence audio
+- **"Unmute"** → Restore volume
+- **"Unmute the sound"** → Turn sound back on
 
-### 📱 Applications
-- "Open Chrome" → Launch app
-- "Close Spotify" → Close app
-- "List applications" → Show open apps
+### 📱 Application Management
+- **"Open Chrome"** → Launch Chrome browser
+- **"Open Spotify"** → Launch Spotify
+- **"Launch Safari"** → Open Safari
+- **"Start TextEdit"** → Open TextEdit
+- **"Close Chrome"** → Close Chrome application
+- **"Quit Spotify"** → Close Spotify
+- **"Exit Safari"** → Close Safari
+- **"List applications"** → Show all open apps
+- **"What apps are open"** → List running applications
+- **"Show running apps"** → Display open applications
 
-### 🌐 Web
-- "Open google.com" → Open in browser
-- "Search for Python" → Google search
+### 🌐 Web & Search Commands
+- **"Open google.com"** → Open website in browser
+- **"Go to github.com"** → Visit GitHub
+- **"Visit apple.com"** → Open Apple website
+- **"Search for Python"** → Google search for Python
+- **"Search machine learning"** → Web search
+- **"Google artificial intelligence"** → Search on Google
+- **"Look for vacation deals"** → Search web
+- **"Find information about AI"** → Web search
 
-### ⚙️ System
-- "Lock screen" → Lock Mac
-- "Sleep" → Sleep Mac
+### ⚙️ System Control Commands
+- **"Lock screen"** → Lock your Mac
+- **"Lock Mac"** → Security lock
+- **"Sleep"** → Put Mac to sleep
+- **"Go to sleep"** → Sleep mode
+- **"Put Mac to sleep"** → Initiate sleep mode
 
 ## 🔊 Voice Characteristics
 
 - **Speed**: 190 WPM (natural conversational)
-- **Voice**: Samantha (female, high-quality)
+- **Voice**: Samantha (female, high-quality, natural)
 - **Tones**: Natural, Fast, Slow, Formal, Casual
 - **Prosody**: Intelligent pauses and emphasis
+
+## 💬 Naming Your Assistant
+
+Your voice bot doesn't have a default name yet! Here are some suggestions based on her personality:
+
+### 🌟 Suggested Names
+
+**Professional & Tech-Savvy:**
+- **ARIA** - "Automated Response & Intelligence Assistant" (elegant, tech-forward)
+- **NOVA** - "Neural Optimized Voice Assistant" (modern, powerful)
+- **IRIS** - "Intelligent Response & Intelligence System" (professional, friendly)
+- **SAGE** - Simple, knowledgeable, tech-focused
+
+**Inspired by Nature:**
+- **ECHO** - Responsive, always listening
+- **ZEPHYR** - "West Wind" in Greek mythology (calming, helpful)
+- **AURORA** - Roman goddess of dawn (beginning, enlightenment)
+- **SIENNA** - Warm, earthy, inviting
+
+**Personable & Friendly:**
+- **LUNA** - "Moon" in Latin (calm, present 24/7)
+- **STELLA** - "Star" (guiding, reliable)
+- **MELODY** - Music-themed, harmonious
+- **HARMONY** - Works smoothly, helps you function better
+
+**Tech-Inspired:**
+- **ALICE** - "Advanced Linguistic Interactive Computing Engine"
+- **VERA** - "Virtual Environment Response Assistant"
+- **SAGE** - Wise, knowledgeable assistant
+
+### 🎯 How to Use a Custom Name
+
+1. Edit `src/terminal_ui.py` and `src/response_engine.py`
+2. Replace references to "SYSTEM" with your chosen name
+3. Add personality responses in `data/responses.json`
+4. Customize voice tone per command based on assistant personality
+
+**Pick the one that speaks to you (literally!)** ✨
 
 ## 📁 Project Structure
 
@@ -181,9 +266,10 @@ python test_demo.py
 
 - macOS 10.14+
 - Python 3.9+
-- 2GB free space
-- Microphone (optional for voice)
-- FFmpeg (for real audio)
+- 500MB free space
+- Internet (for weather, location, search features)
+- **No microphone needed!** ✅
+- **No FFmpeg needed!** ✅
 
 ## 🚀 Advanced Usage
 
@@ -217,23 +303,27 @@ Edit `src/system_control.py` to add calendar, email, file operations, etc.
 
 | Issue | Solution |
 |-------|----------|
-| FFmpeg error | Install FFmpeg (see Quick Start) |
-| Voice robotic | Already optimized to 190 WPM |
-| Commands not recognized | Run `python test_system_control.py` |
-| Microphone not working | Use demo mode: `python src/main.py --demo` |
+| Commands not recognized | Check command format - use natural language like "battery status" not just "battery" |
+| Voice not working | Ensure Samantha voice is available: `say -v Samantha "test"` |
+| Dependency errors | Run: `pip install -r requirements.txt` |
+| Text input not showing | Make sure terminal is focused in the input area |
+| Permission denied | Add execute permission: `chmod +x src/main.py` |
+| Import errors | Verify virtual environment: `source venv/bin/activate` |
 
 ## 🎉 What's Included
 
-✅ Complete system control  
-✅ Natural human-like voice  
-✅ Location and weather  
-✅ Application management  
-✅ Battery/disk monitoring  
-✅ Brightness/volume control  
-✅ Web search integration  
-✅ Professional UI  
-✅ Offline operation  
-✅ Demo mode available  
+✅ Text input interface (no microphone needed)  
+✅ Natural female voice output (Samantha voice)  
+✅ 30+ system commands fully functional  
+✅ Location and weather services  
+✅ Application management (open/close/list apps)  
+✅ Battery/disk/network monitoring  
+✅ Brightness and volume control  
+✅ Web search and URL opening  
+✅ Professional terminal UI (JARVIS-style)  
+✅ Complete system integration  
+✅ Offline core operation  
+✅ Zero dependencies on audio hardware  
 
 ## 🎯 Getting Started
 
