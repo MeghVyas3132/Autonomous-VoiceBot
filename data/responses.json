@@ -43,9 +43,9 @@
   "name": {
     "patterns": ["what is your name", "who are you", "your name"],
     "responses": [
-      "I'm VoiceBot, your offline assistant! Nice to meet you.",
-      "My name is VoiceBot. I'm here to help you offline!",
-      "You can call me VoiceBot, your personal assistant."
+      "I'm Megh's VoiceBot, your offline assistant! Nice to meet you.",
+      "My name is Megh's VoiceBot. I'm here to help you offline!",
+      "You can call me Megh's VoiceBot, your personal assistant."
     ]
   },
   "goodbye": {

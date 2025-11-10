@@ -14,6 +14,7 @@ from src.speech_recognition_engine import SpeechRecognizer
 from src.speech_synthesis import SpeechSynthesizer
 from src.response_engine import ResponseEngine
 from src.terminal_ui import TerminalUI
+from src.connectivity_manager import ConnectivityManager
 from config.settings import DEBUG
 
 
@@ -26,6 +27,7 @@ class VoiceBot:
         self.response_engine = ResponseEngine()
         self.speech_synthesizer = SpeechSynthesizer()
         self.speech_recognizer = None
+        self.connectivity_manager = ConnectivityManager()
         self.is_running = False
         self.demo_mode = False
     
@@ -40,23 +42,30 @@ class VoiceBot:
             True if successful, False otherwise
         """
         self.ui.display_header()
-        self.ui.display_status("Initializing neural network...", "cyan")
+        self.ui.display_status("Initializing neural network...", "rgb(255,127,0)")
         self.demo_mode = demo_mode
         
+        # Check internet connectivity
+        mode = self.connectivity_manager.get_mode().upper()
+        if self.connectivity_manager.is_online:
+            self.ui.display_status(f"CONNECTIVITY: {mode} - Full Siri-like capabilities", "rgb(255,127,0)")
+        else:
+            self.ui.display_status(f"CONNECTIVITY: {mode} - System commands only", "rgb(255,127,0)")
+        
         # Initialize speech recognizer with Whisper
-        self.ui.display_status("Initializing Whisper speech recognition...", "cyan")
+        self.ui.display_status("Initializing Whisper speech recognition...", "rgb(255,127,0)")
         self.speech_recognizer = SpeechRecognizer(model_size="base")
         
         if self.demo_mode:
-            self.ui.display_status("DEMO_MODE: Text input protocol active", "yellow")
+            self.ui.display_status("DEMO_MODE: Text input protocol active", "rgb(255,127,0)")
         elif not self.speech_recognizer.model:
-            self.ui.display_status("WARNING: Whisper model unavailable", "yellow")
-            self.ui.display_status("Switching to DEMO_MODE for operation", "yellow")
+            self.ui.display_status("WARNING: Whisper model unavailable", "rgb(255,127,0)")
+            self.ui.display_status("Switching to DEMO_MODE for operation", "rgb(255,127,0)")
             self.demo_mode = True
         
-        self.ui.display_status("Speech Recognition: OPERATIONAL", "green")
-        self.ui.display_status("Text-to-Speech Engine: OPERATIONAL", "green")
-        self.ui.display_status("Response Protocol: OPERATIONAL", "green")
+        self.ui.display_status("Speech Recognition: OPERATIONAL", "rgb(255,127,0)")
+        self.ui.display_status("Text-to-Speech Engine: OPERATIONAL", "rgb(255,127,0)")
+        self.ui.display_status("Response Protocol: OPERATIONAL", "rgb(255,127,0)")
         print()
         
         self.ui.display_welcome()
@@ -79,9 +88,6 @@ class VoiceBot:
         print()
         self.ui.display_user_input(user_input)
         
-        # Show processing animation
-        self.ui.show_processing_animation(0.8)
-        
         # Get response
         response, confidence = self.response_engine.find_response(user_input)
         
@@ -97,7 +103,6 @@ class VoiceBot:
         self.ui.display_response(response)
         
         # Speak response
-        self.ui.show_speaking_animation(0.5)
         self.speech_synthesizer.speak(response)
         
         # Check for exit conditions
@@ -156,9 +161,6 @@ class VoiceBot:
         
         try:
             while self.is_running:
-                print("\n" + "="*60)
-                self.ui.show_listening_animation(1.5)
-                
                 # Get speech input
                 user_input = self.speech_recognizer.listen(demo_mode=self.demo_mode)
                 

@@ -23,6 +23,16 @@ except ImportError:
 from config.settings import SAMPLE_RATE, AUDIO_CHUNK
 
 
+def check_ffmpeg():
+    """Check if ffmpeg is available"""
+    import subprocess
+    try:
+        subprocess.run(['ffmpeg', '-version'], capture_output=True, timeout=2)
+        return True
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        return False
+
+
 class SpeechRecognizer:
     """Handles offline speech recognition using OpenAI Whisper"""
     
@@ -94,9 +104,9 @@ class SpeechRecognizer:
         try:
             self.is_listening = True
             
-            # Record audio
-            duration = timeout or 5  # Default 5 seconds if not specified
-            print(f"[SYSTEM] Recording for {duration} seconds... speak now!")
+            # Record audio - increased to 10 seconds for better voice capture
+            duration = timeout or 10  # Default 10 seconds (increased from 5)
+            print(f"[SYSTEM] Listening for {int(duration)} seconds... speak now!")
             
             # Record audio at 16kHz
             audio_data = sd.rec(
@@ -113,7 +123,20 @@ class SpeechRecognizer:
             
             # Use Whisper to transcribe
             print("[SYSTEM] Processing speech with Whisper...")
-            result = self.model.transcribe(temp_audio_file, language="en")
+            
+            # Check if ffmpeg is available, use appropriate method
+            if check_ffmpeg():
+                result = self.model.transcribe(temp_audio_file, language="en")
+            else:
+                # Fallback: load audio directly without ffmpeg
+                import soundfile as sf
+                audio, sr = sf.read(temp_audio_file)
+                # Resample if necessary
+                if sr != 16000:
+                    from scipy import signal
+                    audio = signal.resample(audio, int(len(audio) * 16000 / sr))
+                result = self.model.transcribe(temp_audio_file, language="en", fp16=False)
+            
             recognized_text = result.get("text", "").strip()
             
             # Clean up temp file
@@ -131,6 +154,7 @@ class SpeechRecognizer:
             
         except Exception as e:
             print(f"ERROR: Error during listening: {e}")
+            print(f"ERROR: ffmpeg might be missing. Install with: brew install ffmpeg")
             self.is_listening = False
             return self._demo_listen()
     

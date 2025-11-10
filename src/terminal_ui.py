@@ -28,10 +28,10 @@ class TerminalUI:
         os.system('clear' if os.name == 'posix' else 'cls')
     
     def display_header(self):
-        """Display JARVIS-style header with sci-fi theme"""
+        """Display header with git bash style (orange/warm colors)"""
         self.clear_screen()
         
-        # JARVIS-style header
+        # Git bash style header with warm colors
         header = """
         [NEURAL NETWORK INITIALIZED]
         ==========================================
@@ -43,11 +43,11 @@ class TerminalUI:
         [SYSTEMS ONLINE - ALL DIAGNOSTICS NOMINAL]
         """
         
-        self.console.print(header, style="bold cyan")
+        self.console.print(header, style="bold rgb(255,127,0)")  # Git bash orange
         self.console.print()
     
     def show_listening_animation(self, duration: float = 2):
-        """Show listening state with sci-fi animation"""
+        """Show listening state with git bash orange style"""
         frames = [
             "[>>>        ] LISTENING FOR AUDIO INPUT",
             "[>>>>       ] LISTENING FOR AUDIO INPUT",
@@ -62,13 +62,13 @@ class TerminalUI:
         
         while time.time() - start_time < duration:
             for frame in frames:
-                self.console.print(f"\r{frame}", end="", style="cyan bold")
+                self.console.print(f"\r{frame}", end="", style="bold rgb(255,127,0)")
                 time.sleep(0.15)
         
         self.console.print()
     
     def show_processing_animation(self, duration: float = 1):
-        """Show processing animation with sci-fi theme"""
+        """Show processing animation with git bash orange style"""
         frames = [
             "[=         ] ANALYZING LANGUAGE PATTERNS",
             "[==        ] ANALYZING LANGUAGE PATTERNS",
@@ -85,13 +85,13 @@ class TerminalUI:
         
         while time.time() - start_time < duration:
             for frame in frames:
-                self.console.print(f"\r{frame}", end="", style="magenta bold")
+                self.console.print(f"\r{frame}", end="", style="bold rgb(255,127,0)")
                 time.sleep(0.08)
         
         self.console.print()
     
     def show_speaking_animation(self, duration: float = 1):
-        """Show speaking animation with sci-fi theme"""
+        """Show speaking animation with git bash orange style"""
         frames = [
             "[*       ] TRANSMITTING AUDIO RESPONSE",
             "[  *     ] TRANSMITTING AUDIO RESPONSE",
@@ -106,34 +106,34 @@ class TerminalUI:
         
         while time.time() - start_time < duration:
             for frame in frames:
-                self.console.print(f"\r{frame}", end="", style="green bold")
+                self.console.print(f"\r{frame}", end="", style="bold rgb(255,127,0)")
                 time.sleep(0.12)
         
         self.console.print()
     
     def display_user_input(self, text: str):
-        """Display user input in sci-fi style"""
+        """Display user input with git bash orange style"""
         panel = Panel(
-            Text(f"USER INPUT > {text.upper()}", style="bold cyan"),
-            border_style="cyan",
+            Text(f"USER INPUT > {text.upper()}", style="bold rgb(255,127,0)"),
+            border_style="rgb(255,127,0)",
             title="[COMMAND]"
         )
         self.console.print(panel)
     
     def display_response(self, text: str):
-        """Display bot response in sci-fi style"""
+        """Display bot response with git bash orange style"""
         panel = Panel(
-            Text(f"SYSTEM > {text}", style="bold green"),
-            border_style="green",
+            Text(f"SYSTEM > {text}", style="bold rgb(255,127,0)"),
+            border_style="rgb(255,127,0)",
             title="[RESPONSE]"
         )
         self.console.print(panel)
     
     def display_system_info(self):
-        """Display system information in sci-fi style"""
-        table = Table(title="[SYSTEM DIAGNOSTICS]", show_header=True, header_style="bold cyan")
-        table.add_column("ATTRIBUTE", style="cyan")
-        table.add_column("VALUE", style="green")
+        """Display system information with git bash orange style"""
+        table = Table(title="[SYSTEM DIAGNOSTICS]", show_header=True, header_style="bold rgb(255,127,0)")
+        table.add_column("ATTRIBUTE", style="rgb(255,127,0)")
+        table.add_column("VALUE", style="white")
         
         table.add_row("OPERATING_SYSTEM", platform.system())
         table.add_row("PLATFORM", platform.platform())
@@ -144,27 +144,27 @@ class TerminalUI:
         self.console.print(table)
     
     def display_time(self):
-        """Display current time in sci-fi style"""
+        """Display current time with git bash orange style"""
         current_time = datetime.now().strftime("%H:%M:%S")
         panel = Panel(
-            Text(current_time, justify="center", style="bold yellow"),
-            border_style="yellow",
+            Text(current_time, justify="center", style="bold rgb(255,127,0)"),
+            border_style="rgb(255,127,0)",
             title="[TEMPORAL SYNC]"
         )
         self.console.print(panel)
     
     def display_date(self):
-        """Display current date in sci-fi style"""
+        """Display current date with git bash orange style"""
         current_date = datetime.now().strftime("%A, %B %d, %Y")
         panel = Panel(
-            Text(current_date, justify="center", style="bold cyan"),
-            border_style="cyan",
+            Text(current_date, justify="center", style="bold rgb(255,127,0)"),
+            border_style="rgb(255,127,0)",
             title="[CALENDAR_SYNC]"
         )
         self.console.print(panel)
     
     def display_help(self):
-        """Display help information in sci-fi style"""
+        """Display help information with git bash orange style"""
         help_text = """
 [AVAILABLE COMMANDS]
 
@@ -181,7 +181,7 @@ KEYBOARD_SHORTCUTS:
   - Speak clearly and directly
   - Optimal performance in low-noise environments
         """
-        panel = Panel(help_text, border_style="cyan", title="[COMMAND_PROTOCOL]")
+        panel = Panel(help_text, border_style="rgb(255,127,0)", title="[COMMAND_PROTOCOL]")
         self.console.print(panel)
     
     def display_error(self, error_msg: str):
@@ -198,7 +198,7 @@ KEYBOARD_SHORTCUTS:
         self.console.print(f"[{style}]>[/{style}] {status}")
     
     def display_welcome(self):
-        """Display welcome message in sci-fi style"""
+        """Display welcome message with git bash orange style"""
         welcome_text = """
 [INITIALIZATION SEQUENCE COMPLETE]
 
@@ -213,7 +213,7 @@ Try commands like:
 
 Type your command or speak directly:
         """
-        panel = Panel(welcome_text, border_style="cyan", title="[READY_FOR_INPUT]")
+        panel = Panel(welcome_text, border_style="rgb(255,127,0)", title="[READY_FOR_INPUT]")
         self.console.print(panel)
 
 
